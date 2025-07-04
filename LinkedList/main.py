@@ -27,7 +27,21 @@ class LinkedList:
         self.head = new_node
 
     def delete_node(self, data):
+        curr = self.head
+        if curr and curr.data == data:
+            self.head = curr.next
+            return
         
+        prev = None
+        while curr and curr.data != data:
+            prev = curr
+            curr = curr.next
+        
+        if not curr:
+            print("Item not found")
+            return
+        
+        prev.next = curr.next
     
     def display(self):
         elements = []
@@ -42,4 +56,5 @@ l1 = LinkedList()
 l1.add_to_end(1)
 l1.add_to_end(2)
 l1.add_to_beginning(0)
+l1.delete_node(10)
 l1.display()
